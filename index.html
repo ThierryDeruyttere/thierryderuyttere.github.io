@@ -3,6 +3,28 @@
     <title>Thierry Deruyttere</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+#tab-content div {
+  display: none;
+}
+
+#tab-content div.is-active {
+  display: block;
+}
+
+div.is-active *{
+  display: block !important;
+}
+
+.tabs ul{
+  border-bottom-color: #dbdbdb !important;
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+}
+
+</style>
 </head>
 <body>
   <section class="hero">
@@ -11,12 +33,12 @@
   <div class="columns">
   <div class="column is-one-quarter">
     <div class="card">
-  <div class="card-image">
-    <figure class="image is-1by1">
-      <img src="imgs/face.jpg" alt="Placeholder image">
-    </figure>
-  </div>
-  <div class="card-content">
+      <div class="card-image">
+        <figure class="image is-1by1">
+          <img src="imgs/face.jpg" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="card-content">
     <div class="media">
       <div class="media-content">
         <p class="title is-4">Thierry Deruyttere</p>
@@ -29,7 +51,7 @@
   My main interests lie in deep learning and computer vision (object detection).
   Did my master thesis about <b>fashion recognition</b>.
 </div>
-    <div class="content">
+<div class="content">
       <br/>
       <i class="fas fa-map-marker-alt fa-lg"></i> Belgium
       <br/>
@@ -42,32 +64,75 @@
     </div>
   </div>
 </div>
+</div>
 
+<div class="column">
+  <div class="tabs">
+    <ul>
+      <li class="is-active" data-tab="1"><a>Personal projects</a></li>
+      <li data-tab="2"><a>Publications</a></li>
+    </ul>
   </div>
-  <div class="column">
-    <div class="card">
-  <div class="card-content">
-    <p class="title">
-      Personal projects
-    </p>
-    <p>
-    </p>
+  <div id="tab-content">
+      <div class="card is-active" id="projects" data-content="1">
+        <div class="card-content">
+          <p class="title">
+            Personal projects
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+      <div class="card" id="publications" data-content="2">
+        <div class="card-content">
+          <p class="title">
+            Publications
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+  </div>
+
+<!--
+    <div class="card" id="projects">
+      <div class="card-content">
+        <p class="title">
+          Personal projects
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+    <br/>
+    <div class="card" id="publications">
+      <div class="card-content">
+        <p class="title">
+          Publications
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  -->
   </div>
 </div>
-<br/>
-    <div class="card">
-  <div class="card-content">
-    <p class="title">
-      Publications
-    </p>
-    <p>
-    </p>
-  </div>
 </div>
-  </div>
-</div>
-</div>
+
 </section>
 
+<script>
+$(document).ready(function() {
+  $('.tabs li').on('click', function() {
+    var tab = $(this).data('tab');
+
+    $('.tabs li').removeClass('is-active');
+    $(this).addClass('is-active');
+
+    $('#tab-content div').removeClass('is-active');
+    $('div[data-content="' + tab + '"]').addClass('is-active');
+  });
+});
+</script>
 </body>
 </html>
